@@ -35,3 +35,7 @@
 
 会員登録済みの方は
 <%= render "user/shared/links" %>からログインをお願いします。
+
+<div>
+  <%= link_to 'ゲストログインはこちら', user_guest_sign_in_path, method: :post %>
+</div>
