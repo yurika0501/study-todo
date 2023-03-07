@@ -1,8 +1,24 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-4'>
-      <!--<h2>User info</h2>-->
-      <%= render 'user/users/info', user: current_user %>
-    </div>
-  </div>
-</div>
+<h2>STUDY-ToDoへようこそ！</h2>
+  <p>
+    あなたのタスクを簡単に管理できるToDoリストで、</br>
+    日々の生活を効率的に過ごしましょう！
+  </p>
+  <p>
+    仲間をフォローすることで、</br>
+    お互いに応援し合ってモチベーションを保つこともできます。
+  </p>
+  <p>
+    勉強だけではなく、家事や原稿管理にも</br>
+    活用できる汎用性の高さも魅力の一つです。
+  </p>
+  <p>
+    一緒にタスクをクリアして、充実した毎日を送りましょう！
+  </p>
+  <p>
+    <%= link_to 'お試しはこちら', user_guest_sign_in_path, method: :post %>
+  </p>
+  
+    <%= link_to "新規登録はこちら", new_user_registration_path %>
+
+    <%= link_to "ログインはこちら", new_user_session_path %>
+  
