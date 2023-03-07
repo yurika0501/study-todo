@@ -6,12 +6,14 @@ class User::PostsController < ApplicationController
     end
     
     def index
+        # @post = Post.new
         @posts = Post.all
-        @user = User.find(params[:id])
+        @user = User.find(current_user.id)
     end
     
     def create
         @post = Post.new(post_params)
+        @post.user_id = current_user.id
         if @post.save
             redirect_to posts_path, notice: "投稿が完了しました"
         else

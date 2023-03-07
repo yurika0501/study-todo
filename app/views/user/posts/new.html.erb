@@ -1,0 +1,28 @@
+<header class="navbar navbar-expand-md navbar-info bd-info">
+<div class="mx-auto" style="width: 300px;">
+    <h1>
+      今日のToDo
+    </h1>
+</div></br>
+</header>
+<%= form_with model: @post do |f| %>
+    <div class="mx-auto" style="width: 300px;">
+      <h2>タイトル</h2>
+      <%= f.text_field :title %>
+    </div></br>
+    <div class="mx-auto" style="width: 300px;">
+      <p>タスク</p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+      <p><%= f.text_field :list %></p>
+    </div></br>
+    <div class="mx-auto" style="width: 300px;">
+    <%= f.submit '投稿', class: "btn btn-outline-primary btn-lg" %>
+    </div>
+<% end %>
