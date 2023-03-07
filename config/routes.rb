@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   }
   scope module: :user do
     root to: 'homes#top'
-    resources :posts
-    resources :users
+    resources :posts, only: [:index,:show,:edit,:create,:destroy,:update]
+    resources :users, only: [:index,:show,:edit,:update]
   end
   
   # ゲスト用
