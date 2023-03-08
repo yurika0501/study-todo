@@ -6,6 +6,11 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_one_attached :profile_image
+  
+  # バリデーション実装
+  validates :name, presence: true, length: { minimum: 1, maximum: 20 }, uniqueness: true
+  validates :introduction, length: { maximum: 50 }
+  
   # プロフ画像
   def get_profile_image(width, height)
     unless profile_image.attached?
