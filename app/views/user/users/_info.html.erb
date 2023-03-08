@@ -9,6 +9,29 @@
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
+    <th>
+      <% if user == current_user %>
+        <div class='row'>
+          <!--編集ボタン-->
+          <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+            <i class="fas fa-user-cog"></i>
+          <% end %>
+        </div>
+      <% else %>
+          <!--ログインユーザー以外ならフォロー、フォロー解除になる-->
+          <% if user.is_followed_by?(current_user) %>
+            <%=link_to user_relationships_path(user), method: :delete do %>
+              <button type="button" class="btn btn btn-danger">フォロー外す</button>
+            <% end %>
+          <% else %>
+            <%=link_to user_relationships_path(user), method: :post do %>
+              <button type="button" class="btn btn btn-primary">フォローする</button>
+            <% end %>
+          <% end %>
+      <% end %>
+    </th>
+  </tr>
+  <tr>
 	  <th>
 	    <%= link_to posts_path do %>
         <i class="fas fa-home"></i>&emsp;タイムライン
@@ -32,24 +55,6 @@
   <!--</tr>-->
 </table>
 
-<% if user == current_user %>
-  <div class='row'>
-    <!--編集ボタン-->
-    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
-      <i class="fas fa-user-cog"></i>
-    <% end %>
-  </div>
-<% else %>
-    <% if user.is_followed_by?(current_user) %>
-      <%=link_to user_relationships_path(user), method: :delete do %>
-        <button type="button" class="btn btn btn-danger">フォロー外す</button>
-      <% end %>
-    <% else %>
-      <%=link_to user_relationships_path(user), method: :post do %>
-        <button type="button" class="btn btn btn-primary">フォローする</button>
-      <% end %>
-    <% end %>
-<% end %>
 
   <div>
     <!--ログアウト-->
