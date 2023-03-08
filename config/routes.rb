@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
+  namespace :admin do
+      root to: "homes#top"
+      resources :users, only: [:index, :show]
+  end
 end

@@ -59,8 +59,16 @@ ActiveRecord::Schema.define(version: 2023_03_06_110332) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "body"
-    t.text "list"
+    t.text "list1"
+    t.text "list2"
+    t.text "list3"
+    t.text "list4"
+    t.text "list5"
+    t.text "list6"
+    t.text "list7"
+    t.text "list8"
+    t.text "list9"
+    t.text "list10"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

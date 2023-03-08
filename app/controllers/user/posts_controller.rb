@@ -4,6 +4,10 @@ class User::PostsController < ApplicationController
     def new
         @post = Post.new
     end
+  
+    def show
+        @post = Post.find(params[:id])
+    end
     
     def index
         # @post = Post.new
@@ -14,15 +18,13 @@ class User::PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
         @post.user_id = current_user.id
-        if @post.save
-            redirect_to posts_path, notice: "投稿が完了しました"
-        else
-            render :new
-        end
+        @post.save
+        redirect_to posts_path
     end
     
     private
+    
     def post_params
-        params.require(:post).permit(:title, :list)
+        params.require(:post).permit(:title, :list1,:list2, :list3, :list4, :list5, :list6, :list7, :list8, :list9, :list10)
     end
 end
