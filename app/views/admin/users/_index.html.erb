@@ -8,14 +8,10 @@
             <%= image_tag user.get_profile_image(50,50) %>
           <% end %>
         </td>
-        <td><%= link_to user.name, user %></td>
-        <!--いいね機能-->
-        <!--<td class="fav_<%#= post.id %>">-->
-        <!--  <%#= render 'favorites/fav', post: post %>-->
-        <!--</td>-->
+        <td><%= link_to user.name, admin_user_path(user.id) %></td>
         <!--コメント数-->
         <!--<td>-->
-          <!--    <i class="fas fa-comment"></i><%#= post.comments.count %>-->
+          <!--<i class="fas fa-comment"></i><%#= post.comments.count %>-->
         <!--</td>-->
       </tr>
     </tbody>
