@@ -1,0 +1,23 @@
+<table class='table table-hover table-inverse'>
+    <% users.each do |user| %>
+    <tbody>
+      <tr>
+        <td>
+          <!--投稿したユーザーと紐づくアイコン-->
+          <%= link_to(user) do %>
+            <%= image_tag user.get_profile_image(50,50) %>
+          <% end %>
+        </td>
+        <td><%= link_to user.name, user %></td>
+        <!--いいね機能-->
+        <!--<td class="fav_<%#= post.id %>">-->
+        <!--  <%#= render 'favorites/fav', post: post %>-->
+        <!--</td>-->
+        <!--コメント数-->
+        <!--<td>-->
+          <!--    <i class="fas fa-comment"></i><%#= post.comments.count %>-->
+        <!--</td>-->
+      </tr>
+    </tbody>
+    <% end %>
+</table>
