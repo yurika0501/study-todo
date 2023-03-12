@@ -1,0 +1,60 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <!--左側のログアウト-->
+    <div class='col-md-3'>
+        <h2>会員詳細</h2><br>
+        <% if admin_signed_in? %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+        <% end %>
+    </div>
+  
+   <!--右側の投稿一覧画面-->
+    <div class='col-md-8 offset-md-1'>
+      <h2><%= @user.name %>さんの会員詳細</h2>
+      <table class='table'>
+        <tr><%= image_tag @user.get_profile_image(100, 100) %></tr>
+        <tr>
+      	  <th>プロフィール</th>
+      	  <th><%= @user.introduction %></th>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <th><%= @user.email %></th>
+        </tr>
+        <% @posts.each do |post| %>
+        <tr>
+            <tbody>
+              <tr>
+                <th>投稿タイトル</th>
+                <td><%= post.title %></td>
+                <th>投稿リスト</th>
+                <td><%= post.list1 %></td>
+                <td><%= post.list2 %></td>
+                <td><%= post.list3 %></td>
+                <td><%= post.list4 %></td>
+                <td><%= post.list5 %></td>
+                <td><%= post.list6 %></td>
+                <td><%= post.list7 %></td>
+                <td><%= post.list8 %></td>
+                <td><%= post.list9 %></td>
+                <td><%= post.list10 %></td>
+                <!--<td>-->
+                <!--管理者が会員の投稿を消す機能（エラーが出るので後回し）-->
+                <!--  <%#= link_to "削除", post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>-->
+                <!--  <%# if user_signed_in? && current_user.admin? && current_user.id == p.user_id  %>  -->
+                <!--   <%#= button_to "削除する", post_path(p.id), method: :delete %>-->
+                <!--  <%# end %>-->
+                <!--</td>-->
+                
+                <!--コメント数-->
+                <td>
+                  <%= post.comments.count %><i class="far fa-comment"></i>
+                </td>
+              </tr>
+            </tbody>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

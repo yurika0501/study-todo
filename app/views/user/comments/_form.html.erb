@@ -1,5 +1,5 @@
 <!--コメントフォーム-->
-<%#= form_with model: [post, comment], local: false do |f| %><!--非同期通信化する場合こっちを使う--
+<%#= form_with model: [post, comment], local: false do |f| %><!--非同期通信化する場合こっちを使う-->
 <%= form_with model: [post, comment] do |f| %>
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %><br>
   <%= f.submit "送信", class: "btn btn-outline-primary" %>
