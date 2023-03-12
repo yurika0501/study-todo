@@ -24,8 +24,8 @@ class User::PostsController < ApplicationController
     
     def destroy
         @post = Post.find(params[:id]).destroy
-        @post.destroy
-        redirect_to user_path(user)
+        # @post.destroy
+        redirect_to user_path(@post.user.id)
     end
     
     private
@@ -33,4 +33,12 @@ class User::PostsController < ApplicationController
     def post_params
         params.require(:post).permit(:title, :list1,:list2, :list3, :list4, :list5, :list6, :list7, :list8, :list9, :list10)
     end
+    
+    def is_matching_login_user
+        user_id = Post.find(params[:id]).user.id
+        unless user_id == current_user.id
+          redirect_to posts_path
+        end
+    end
+  
 end
