@@ -10,7 +10,6 @@ class User::PostsController < ApplicationController
     end
     
     def index
-        # @post = Post.new
         @posts = Post.all
         @user = User.find(current_user.id)
     end
@@ -24,7 +23,6 @@ class User::PostsController < ApplicationController
     
     def destroy
         @post = Post.find(params[:id]).destroy
-        # @post.destroy
         redirect_to user_path(@post.user.id)
     end
     

@@ -1,10 +1,17 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <!--<h2>User info</h2>-->
+      <!--投稿左側のプロフィール-->
       <%= render 'info', user: @user %>
     </div>
+  
+   <!--右側の投稿一覧画面-->
+    <div class='col-md-8 offset-md-1'>
+      <h2>会員詳細</h2>
+      <%= render 'user/posts/index', posts: @posts, user: @user %>
+    </div>
   </div>
+  
       <!--投稿新規作成ボタン-->
       <div class='col-md-8 offset-md-1'>
           <div class="position-absolute bottom-0 start-0">
