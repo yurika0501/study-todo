@@ -63,6 +63,17 @@
           <td><%= @post.list10 %></td>
         </tr>
       </table>
+      
+      <!--コメント一覧-->
+      <h4>コメント</h4>
+      <div id="comments">
+        <%= render 'user/comments/comment', post: @post %>
+      </div>
+      
+      <!--コメントフォーム-->
+      <div id="comment-form">
+        <%= render 'user/comments/form', post: @post, comment: @comment %>
+      </div>
     </div>
   </div>
       <!--投稿新規作成ボタン-->
