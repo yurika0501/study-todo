@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   }
   scope module: :user do
     root to: 'homes#top'
-    resources :posts, only: [:index,:show,:new,:edit,:create,:destroy,:update]
+    resources :posts, only: [:index,:show,:new,:edit,:create,:destroy,:update] do
+      resources :comments, only: [:create,:destroy]
+    end
     resources :users, only: [:show,:edit,:update]
   end
   

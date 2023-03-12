@@ -22,10 +22,16 @@
                 <!--<td class="fav_<%#= post.id %>">-->
                 <!--  <%#= render 'favorites/fav', post: post %>-->
                 <!--</td>-->
+                
                 <!--コメント数-->
-                <!--<td>-->
-                <!--    <i class="fas fa-comment"></i><%#= post.comments.count %>-->
-                <!--</td>-->
+                <td>
+                  <%= @post.comments.count %><i class="far fa-comment"></i>
+                </td>
+          <td>
+            <% if @post.user == current_user %>
+              <%= link_to "削除", @post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+            <% end %>
+          </td>
         <tr>
           <td><%= @post.list1 %></td>
         </tr>
