@@ -10,8 +10,11 @@ Rails.application.routes.draw do
     resources :posts, only: [:index,:show,:new,:edit,:create,:destroy,:update] do
       resources :comments, only: [:create,:destroy]
     end
-    resources :users, only: [:show,:edit,:update]
+      get 'unsubscribe/' => 'users#unsubscribe', as: 'confirm_unsubscribe'
+      patch 'withdraw/' => 'users#withdraw', as: 'withdraw_user'
+    resources :users, only: [:show,:edit,:update] 
   end
+  
   
   # ゲスト用
   devise_scope :user do

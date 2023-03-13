@@ -19,6 +19,16 @@ class User::UsersController < ApplicationController
             render "edit"
         end
     end
+    
+    # 会員退会画面アクション
+    def unsubscribe
+    end
+    # 会員退会処理アクション
+    def withdraw
+        current_user.update(is_deleted: true)
+        reset_session
+        redirect_to root_path
+    end
 
 
     
@@ -33,6 +43,6 @@ class User::UsersController < ApplicationController
     end
     
     def user_params
-        params.require(:user).permit(:name, :profile_image, :introduction)
+        params.require(:user).permit(:name, :profile_image, :introduction,:is_deleted)
     end
 end

@@ -38,13 +38,13 @@
       <% end %>
     </th>
   </tr>
-  <tr>
-	  <th>
-	    <%= link_to root_path do %>
-        <i class="fas fa-book-open"></i>&emsp;ブックマーク※
-      <% end %>
-    </th>
-  </tr>
+  <!--<tr>-->
+	 <!-- <th>-->
+	 <!--   <%#= link_to root_path do %>-->
+  <!--      <i class="fas fa-book-open"></i>&emsp;ブックマーク※--><!--ブクマ機能は時間がある時に実装予定-->
+  <!--    <%# end %>-->
+  <!--  </th>-->
+  <!--</tr>-->
   <!--<tr>-->
 	 <!-- <th>follows</th>-->
 	 <!-- <th><%#= link_to user.followings.count, followings_user_path(user) %></th>-->
@@ -57,9 +57,15 @@
 
 
   <div>
-    <!--ログアウト-->
-    <% if user_signed_in? %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% if user == current_user %>
+      <!--ログアウト-->
+      <% if user_signed_in? %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      <% end %><br>
+      <!--退会ボタン-->
+      <% if user_signed_in? %>
+        <%= link_to "退会", confirm_unsubscribe_path, class:"btn btn-danger btn-sm" %>
+      <% end %>
     <% end %>
   </div>
   

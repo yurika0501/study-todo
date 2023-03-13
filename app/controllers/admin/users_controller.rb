@@ -9,7 +9,7 @@ class Admin::UsersController < ApplicationController
   end
 
 # コメントアウトしている部分は管理者が会員の投稿を消せるようにする記述だがエラーになるため後回し
-#   private
+  private
 
 #   def if_not_admin
 #     redirect_to root_path unless current_user.admin?
@@ -18,4 +18,7 @@ class Admin::UsersController < ApplicationController
 #   def set_post
 #     @post = Post.find(params[:id])
 #   end
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction,:is_deleted)
+  end
 end
