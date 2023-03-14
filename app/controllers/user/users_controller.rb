@@ -1,5 +1,5 @@
 class User::UsersController < ApplicationController
-    before_action :ensure_guest_user, only: [:edit]
+    before_action :ensure_guest_user, only: [:edit, :is_deleted]
     
     def show
         @user = User.find(params[:id])

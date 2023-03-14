@@ -11,12 +11,6 @@
             <% end %>
         </td>
         <td><%= link_to post.title, post %></td>
-        <td>
-            <% if post.user == current_user %>
-                <%= link_to "削除", post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
-            <% end %>
-        </td>
-
         <!--いいね機能-->
         <td>
             <% if post.favorited?(current_user) %>
@@ -33,6 +27,12 @@
               </p>
             <% end %>
         </td>
+        <td>
+            <% if post.user == current_user %>
+                <%= link_to "削除", post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+            <% end %>
+        </td>
+
     </tr>
   <tbody>
 <% end %>

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'unsubscribe/' => 'users#unsubscribe', as: 'confirm_unsubscribe'
       patch 'withdraw/' => 'users#withdraw', as: 'withdraw_user'
       # 検索用
-      get "search/" => "users#search"
+      get "search" => "searches#search"
       
     resources :users, only: [:show,:edit,:update] 
   end
