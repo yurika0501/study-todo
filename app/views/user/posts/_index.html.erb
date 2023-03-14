@@ -1,30 +1,39 @@
+<!--投稿一覧-->
 <table class='table table-hover table-inverse'>
-    <% posts.each do |post| %>
-    <tbody>
-        
-            <tr>
-                <td>
-                    <!--投稿したユーザーと紐づくアイコン-->
-                    <%= link_to(post.user) do %>
-                        <%= image_tag post.user.get_profile_image(50,50) %><br>
-                        <%= post.user.name %>
-                    <% end %>
-                </td>
-                <td><%= link_to post.title, post %></td>
-                <td>
-                  <% if post.user == current_user %>
-                    <%= link_to "削除", post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
-                  <% end %>
-                </td>
-                <!--いいね機能-->
-                <!--<td class="fav_<%#= post.id %>">-->
-                <!--  <%#= render 'favorites/fav', post: post %>-->
-                <!--</td>-->
-                <!--コメント数-->
-                <!--<td>-->
-                <!--    <i class="fas fa-comment"></i><%#= post.comments.count %>-->
-                <!--</td>-->
-            </tr>
-    </tbody>
-    <% end %>
+<% posts.each do |post| %>
+  <tbody>
+    <tr>
+        <td>
+            <!--投稿したユーザーと紐づくアイコン-->
+            <%= link_to(post.user) do %>
+                <%= image_tag post.user.get_profile_image(50,50) %><br>
+                <%= post.user.name %>
+            <% end %>
+        </td>
+        <td><%= link_to post.title, post %></td>
+        <td>
+            <% if post.user == current_user %>
+                <%= link_to "削除", post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+            <% end %>
+        </td>
+
+        <!--いいね機能-->
+        <td>
+            <% if post.favorited?(current_user) %>
+              <p>
+              <%= link_to post_favorites_path(post.id), method: :delete do %>
+                <i class="fas fa-thumbs-up"></i><%= post.favorites.count %>
+              <% end %>
+              </p>
+              <% else %>
+              <p>
+              <%= link_to post_favorites_path(post.id), method: :post do %>
+                <i class="far fa-thumbs-up"></i><%= post.favorites.count %>
+              <% end %>
+              </p>
+            <% end %>
+        </td>
+    </tr>
+  <tbody>
+<% end %>
 </table>

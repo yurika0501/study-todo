@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
     belongs_to :user
     has_many :comments, dependent: :destroy
+    has_many :favorites, dependent: :destroy
     
     validates :title, presence: true,length:{ maximum: 20 }
     #validates :body, presence: true,length:{ maximum: 200 }
@@ -28,6 +29,11 @@ class Post < ApplicationRecord
     else
       @post = Post.all
     end
+  end
+  
+  # ふぁぼがクリックされる度に呼び出すメソッド
+  def favorited?(user)
+    favorites.where(user_id: user.id).exists?
   end
   
 end

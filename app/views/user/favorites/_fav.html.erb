@@ -1,0 +1,14 @@
+<!--いいね機能-->
+<% if post.favorited?(current_user) %>
+  <p>
+  <%= link_to post_favorites_path(post.id), method: :delete do %>
+    <i class="fas fa-thumbs-up"></i><%= post.favorites.count %>
+  <% end %>
+  </p>
+  <% else %>
+  <p>
+  <%= link_to post_favorites_path(post.id), method: :post do %>
+    <i class="far fa-thumbs-up"></i><%= post.favorites.count %>
+  <% end %>
+  </p>
+<% end %>

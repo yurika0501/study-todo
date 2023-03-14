@@ -18,15 +18,16 @@
           </td>
           
           <td><%= @post.title %></td>
+          
           <!--いいね機能-->
-                <!--<td class="fav_<%#= post.id %>">-->
-                <!--  <%#= render 'favorites/fav', post: post %>-->
-                <!--</td>-->
-                
-                <!--コメント数-->
-                <td>
-                  <%= @post.comments.count %><i class="far fa-comment"></i>
-                </td>
+          <td>
+            <%= render 'user/favorites/fav', post: @post %>
+          </td>
+          
+          <!--コメント数-->
+          <td>
+            <%= @post.comments.count %><i class="far fa-comment"></i>
+          </td>
           <td>
             <% if @post.user == current_user %>
               <%= link_to "削除", @post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>

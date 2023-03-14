@@ -10,12 +10,13 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :posts, only: [:index,:show,:new,:edit,:create,:destroy,:update] do
       resources :comments, only: [:create,:destroy]
+      resource :favorites, only: [:create, :destroy]
     end
       # 会員退会機能のURL
       get 'unsubscribe/' => 'users#unsubscribe', as: 'confirm_unsubscribe'
       patch 'withdraw/' => 'users#withdraw', as: 'withdraw_user'
       # 検索用
-      get "search" => "s#search"
+      get "search/" => "users#search"
       
     resources :users, only: [:show,:edit,:update] 
   end
