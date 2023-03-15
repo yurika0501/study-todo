@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
-    
+    # adminとuserの遷移制限
+    before_action :authenticate_admin!, if: -> { request.path =~ /^\/admin/ }
+    before_action :authenticate_user!, if: -> { request.path =~ /^\/user/ || request.path =~ /^\/post/}
+
     private
     
     def after_sign_in_path_for(resource_or_scope)
