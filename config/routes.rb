@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  namespace :user do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   # 顧客用
-  # URL /users/sign_in ...
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "user/registrations",
     sessions: 'user/sessions'
@@ -18,7 +21,12 @@ Rails.application.routes.draw do
       # 検索用
       get "search" => "searches#search"
       
-    resources :users, only: [:show,:edit,:update] 
+    resources :users, only: [:show,:edit,:update] do
+      # フォロー、フォロワー機能
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
   end
   
   
@@ -28,7 +36,6 @@ Rails.application.routes.draw do
   end
   
   # 管理者用
-  # URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }

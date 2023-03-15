@@ -13,21 +13,17 @@
       <% if user == current_user %>
         <div class='row'>
           <!--編集ボタン-->
-          <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
+          <%= link_to edit_user_path(user), class: "btn btn-outline-success btn-block" do %>
             <i class="fas fa-user-cog"></i>
           <% end %>
         </div>
-      <%# else %>
+      <% else %>
           <!--ログインユーザー以外ならフォロー、フォロー解除になる-->
-          <%# if user.is_followed_by?(current_user) %>
-            <%#=link_to user_relationships_path(user), method: :delete do %>
-              <!--<button type="button" class="btn btn btn-danger">フォロー外す</button>-->
-            <%# end %>
-          <%# else %>
-            <%#=link_to user_relationships_path(user), method: :post do %>
-              <!--<button type="button" class="btn btn btn-primary">フォローする</button>-->
-            <%# end %>
-          <%# end %>
+        <% if current_user.following?(user) %>
+          <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+        <% end %>
       <% end %>
     </th>
   </tr>
