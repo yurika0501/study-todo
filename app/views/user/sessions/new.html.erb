@@ -1,32 +1,41 @@
-<h2>ログイン</h2>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-8">
+      <h2 class="text-center mb-4">ログイン</h2>
 
-<%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
+      <%= form_with(model: resource, url: session_path(resource_name)) do |f| %>
+        <div class="form-group">
+          <%= f.label :メールアドレス %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="form-group">
+          <%= f.label :パスワード %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <% if devise_mapping.rememberable? %>
+          <div class="form-check">
+            <%= f.check_box :remember_me, class: "form-check-input" %>
+            <%= f.label :remember_me, class: "form-check-label" %>
+          </div>
+        <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="text-center mt-4">
+          <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+        </div>
+      <% end %>
+
+      <hr>
+
+      <div class="form-group">
+        未登録の方は
+        <%= render "user/shared/links" %>から新規登録をお願いします。
+      </div>
+
+      <div class="form-group">
+        <%= link_to "ゲストログインはこちら", user_guest_sign_in_path, method: :post %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
-
-未登録の方は
-<%= render "user/shared/links" %>から新規登録をお願いします。
-
-<div>
-  <%= link_to 'ゲストログインはこちら', user_guest_sign_in_path, method: :post %>
 </div>
