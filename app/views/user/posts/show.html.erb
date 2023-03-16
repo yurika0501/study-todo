@@ -34,34 +34,40 @@
             <% end %>
           </td>
         <tr>
-          <td><%= @post.list1 %></td>
+          <td>
+            <% if @post.list1 == current_user %><!--途中。分岐の書き方調べる-->
+              <%= @post.list1 %>&emsp;<%= check_box_tag 'list1_checkbox', checked: true %>
+            <% else %>
+              <%= @post.list1 %>&emsp;<%= check_box_tag 'list1_checkbox', checked: false %>
+            <% end %>
+          </td>
         </tr>
         <tr>
-          <td><%= @post.list2 %></td>
+          <td><%= @post.list2 %>&emsp;<%= check_box_tag 'list2_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list3 %></td>
+          <td><%= @post.list3 %>&emsp;<%= check_box_tag 'list3_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list4 %></td>
+          <td><%= @post.list4 %>&emsp;<%= check_box_tag 'list4_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list5 %></td>
+          <td><%= @post.list5 %>&emsp;<%= check_box_tag 'list5_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list6 %></td>
+          <td><%= @post.list6 %>&emsp;<%= check_box_tag 'list6_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list7 %></td>
+          <td><%= @post.list7 %>&emsp;<%= check_box_tag 'list7_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list8 %></td>
+          <td><%= @post.list8 %>&emsp;<%= check_box_tag 'list8_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list9 %></td>
+          <td><%= @post.list9 %>&emsp;<%= check_box_tag 'list9_checkbox' %></td>
         </tr>
         <tr>
-          <td><%= @post.list10 %></td>
+          <td><%= @post.list10 %>&emsp;<%= check_box_tag 'list10_checkbox' %></td>
         </tr>
       </table>
       
