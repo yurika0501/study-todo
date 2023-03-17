@@ -31,7 +31,8 @@
 
 
 ## 設計書
-- ER図やテーブル定義書を後日記載予定
+- [画面遷移図](https://drive.google.com/file/d/18ETt5fmHhz3G6Tfz0xYQY_xtEhHx7B60/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1NWqAzCANv7aY9AEkMeAaBTyk5POcXCMCTG1gCNErryA/edit#gid=1714330366)
 
 ## 開発環境
 - OS：Linux(CentOS)

@@ -4,7 +4,7 @@ class Post < ApplicationRecord
     has_many :favorites, dependent: :destroy
     
     validates :title, presence: true,length:{ maximum: 20 }
-    #validates :body, presence: true,length:{ maximum: 200 }
+
     validate :list1
     validate :list2
     validate :list3

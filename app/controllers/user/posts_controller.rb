@@ -9,6 +9,10 @@ class User::PostsController < ApplicationController
         @user = current_user
         @post = Post.find(params[:id])
         @comment = Comment.new
+        @check = Check.new #新しいCheck
+        @check.list[i] = params[:check] #checksテーブルのlistカラムにviewから受け取ったparamsを代入
+        @check.save #データベースに保存
+        @checks = Check.order(created_at: :desc).limit(1) #checksテーブルから最新のレコードを取得
     end
     
     def index
@@ -22,7 +26,7 @@ class User::PostsController < ApplicationController
         @post.save
         redirect_to posts_path
     end
-    
+
     def destroy
         @post = Post.find(params[:id]).destroy
         redirect_to user_path(@post.user.id)
