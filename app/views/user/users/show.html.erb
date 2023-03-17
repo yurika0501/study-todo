@@ -4,8 +4,10 @@
       <div class='col-md-3'>
         <%= render 'info', user: @user %>
         <!--投稿新規作成ボタン-->
-          <div style='margin-top: 10px;'>
-            <%= render 'user/posts/post-push' %>
+          <div class="d-flex justify-content-end">
+            <div class="ml-auto">
+              <%= render 'user/posts/post-push' %>
+            </div>
           </div>
       </div>
 
