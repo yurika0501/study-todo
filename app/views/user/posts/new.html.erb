@@ -1,29 +1,32 @@
-<header class="navbar navbar-expand-md navbar-info bd-info">
-<div class="mx-auto" style="width: 300px;">
-    <h1>
-      今日のToDo
-    </h1>
-</div></br>
-</header>
-<%= form_with model: @post do |f| %>
-    <div class="mx-auto" style="width: 300px;">
-      <h2>タイトル</h2>
-      <%= f.text_field :title %>
-    </div></br>
-    <div class="mx-auto" style="width: 300px;">
-      <p>タスク</p>
-      <p><%= f.text_field :list1 %></p>
-      <p><%= f.text_field :list2 %></p>
-      <p><%= f.text_field :list3 %></p>
-      <p><%= f.text_field :list4 %></p>
-      <p><%= f.text_field :list5 %></p>
-      <p><%= f.text_field :list6 %></p>
-      <p><%= f.text_field :list7 %></p>
-      <p><%= f.text_field :list8 %></p>
-      <p><%= f.text_field :list9 %></p>
-      <p><%= f.text_field :list10 %></p>
-    </div></br>
-    <div class="mx-auto" style="width: 300px;">
-    <%= f.submit '投稿', class: "btn btn-outline-primary btn-lg" %>
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card">
+    <div class="card-body text-center">
+      <h1 class="bg-primary text-white">
+        今日のToDo
+      </h1></br>
+
+      <%= form_with model: @post do |f| %>
+          <div class="mx-auto" style="width: 400px;">
+            <h2>タイトル</h2>
+            <%= f.text_field :title, class: "form-control" %>
+          </div></br>
+          <div class="mx-auto" style="width: 400px;">
+            <p>タスク</p>
+            <p><%= f.text_field :list1, class: "form-control" %></p>
+            <p><%= f.text_field :list2, class: "form-control" %></p>
+            <p><%= f.text_field :list3, class: "form-control" %></p>
+            <p><%= f.text_field :list4, class: "form-control" %></p>
+            <p><%= f.text_field :list5, class: "form-control" %></p>
+            <p><%= f.text_field :list6, class: "form-control" %></p>
+            <p><%= f.text_field :list7, class: "form-control" %></p>
+            <p><%= f.text_field :list8, class: "form-control" %></p>
+            <p><%= f.text_field :list9, class: "form-control" %></p>
+            <p><%= f.text_field :list10, class: "form-control" %></p>
+          </div></br>
+          <div class="mx-auto" style="width: 300px;">
+          <%= f.submit '投稿', class: "btn btn-outline-primary btn-lg" %>
+          </div>
+      <% end %>
     </div>
-<% end %>
+  </div>
+</div>

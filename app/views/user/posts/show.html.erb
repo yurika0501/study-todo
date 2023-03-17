@@ -19,7 +19,7 @@
           <tr>
             <!--投稿したユーザーと紐づくアイコン-->
             <td><%= link_to(@post.user) do %>
-              <%= image_tag @post.user.get_profile_image(50,50) %><br>
+              <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle" %><br>
               <%= @post.user.name %>
               <% end %>
             </td>

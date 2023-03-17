@@ -1,26 +1,28 @@
-<h2><%= params[:word] %>の検索結果</h2>
-
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
-  <% if @range == "User" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= image_tag user.get_profile_image(80, 80) %></td>
-          <td><%= link_to user.name, user_path(user.id) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= image_tag post.user.get_profile_image(80,80) %></td>
-          <td><%= link_to post.title, post %></td>
-          <td><%= post.list1%></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+<div class="container mt-5">
+  <h2 class="text-center mb-4"><%= params[:word] %>の検索結果</h2>
+  
+  <table class="table table-hover">
+    <!--検索対象モデルがUserの時 -->
+    <% if @range == "User" %>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_profile_image(80, 80), class: "rounded-circle" %></td>
+            <td class="px-200"><%= link_to user.name, user_path(user.id) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <!--検索対象モデルがUserではない時(= 検索対象モデルがPostの時) -->
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle" %></td>
+            <td class="px-1"><%= link_to post.title, post %></td>
+            <td class="px-1"><%= post.list1%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>
+</div>
