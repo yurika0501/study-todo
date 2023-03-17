@@ -16,13 +16,13 @@
             <% if post.favorited?(current_user) %>
               <p>
               <%= link_to post_favorites_path(post.id), method: :delete do %>
-                <i class="fas fa-thumbs-up"></i><%= post.favorites.count %>
+                <%= post.favorites.count %><i class="fas fa-thumbs-up"></i>
               <% end %>
               </p>
               <% else %>
               <p>
               <%= link_to post_favorites_path(post.id), method: :post do %>
-                <i class="far fa-thumbs-up"></i><%= post.favorites.count %>
+                <%= post.favorites.count %><i class="far fa-thumbs-up"></i>
               <% end %>
               </p>
             <% end %>

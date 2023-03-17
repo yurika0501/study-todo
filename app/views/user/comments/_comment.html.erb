@@ -2,14 +2,16 @@
   <tbody>
       <% post.comments.each do |comment| %>
       <tr>
-        <td>
+        <td class="align-middle pr-4">
           <%= link_to(post.user) do %>
             <%= image_tag comment.user.get_profile_image(50,50) %><br>
             <%= comment.user.name %>
           <% end %>
         </td>
-        <td>
-          <%= comment.comment %>
+        <td class="align-middle">
+          <div class="d-flex align-items-center pr-4">
+            <%= comment.comment %>
+          </div>
         </td>
         <td>
           <% if comment.user == current_user %>

@@ -1,21 +1,18 @@
-<div class='container px-5 px-sm-0'>
+<div class='container px-5 px-sm-0 mt-5'>
   <div class='row'>
-    <div class='col-md-3'>
-      <!--投稿左側のプロフィール-->
-      <%= render 'info', user: @user %>
-    </div>
-  
-   <!--右側の投稿一覧画面-->
-    <div class='col-md-8 offset-md-1'>
-      <h2>会員詳細</h2>
-      <%= render 'user/posts/index', post: @post, posts: @posts, user: @user %>
-    </div>
-  </div>
-  
-      <!--投稿新規作成ボタン-->
-      <div class='col-md-8 offset-md-1'>
-          <div class="position-absolute bottom-0 start-0">
+      <!--左側のユーザープロフィール-->
+      <div class='col-md-3'>
+        <%= render 'info', user: @user %>
+        <!--投稿新規作成ボタン-->
+          <div style='margin-top: 10px;'>
             <%= render 'user/posts/post-push' %>
           </div>
       </div>
+
+      <!--右側の投稿一覧画面-->
+      <div class='col-md-8 offset-md-1'>
+        <h2>ToDo一覧</h2>
+        <%= render 'user/posts/index', post: @post, posts: @posts, user: @user %>
+      </div>
+  </div>
 </div>
