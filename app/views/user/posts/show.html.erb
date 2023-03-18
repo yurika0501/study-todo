@@ -15,6 +15,10 @@
       <!--右側の投稿詳細-->
       <div class='col-md-8 offset-md-1'>
         <h2>投稿詳細</h2>
+        <!--チェックボックス付き投稿詳細-->
+        <%#= form_with model: @check do |f| %>
+        <%= form_with model: @post do |f|%>
+
         <table class='table'>
           <tr>
             <!--投稿したユーザーと紐づくアイコン-->
@@ -24,7 +28,7 @@
               <% end %>
             </td>
             
-            <td class="align-middle"><%= @post.title %></td>
+            <td style="width: 50%"><%= @post.title %></td>
             
             <!--いいね機能-->
             <td>
@@ -41,49 +45,22 @@
               <% end %>
             </td>
           
-          <!--チェックボックス付き投稿詳細-->
-          <%= form_with model: @check do |f| %>
-          <tr>
-            <td>
-                <% if check.checkbox1 == current_user %><!--途中。分岐の書き方調べる-->
-                  <%= @post.list1 %>&emsp;<%= f.check_box_tag 'checkbox1', checked: true %>
-                <% else %>
-                  <%= @post.list1 %>&emsp;<%= f.check_box_tag 'checkbox1', checked: false %>
-                <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td><%= @post.list2 %>&emsp;<%= check_box_tag 'list2_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list3 %>&emsp;<%= check_box_tag 'list3_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list4 %>&emsp;<%= check_box_tag 'list4_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list5 %>&emsp;<%= check_box_tag 'list5_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list6 %>&emsp;<%= check_box_tag 'list6_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list7 %>&emsp;<%= check_box_tag 'list7_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list8 %>&emsp;<%= check_box_tag 'list8_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list9 %>&emsp;<%= check_box_tag 'list9_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= @post.list10 %>&emsp;<%= check_box_tag 'list10_checkbox' %></td>
-          </tr>
-          <tr>
-            <td><%= f.submit 'チェックを更新する', class: "btn btn-info" %></td>
-          </tr>
-          <% end %>
+            <%= f.fields_for :tasks do |l| %>
+              <tr>
+                <td>
+                    <%= l.check_box :complete %>&emsp;<%= l.object.content %>
+                    <%= l.hidden_field :id %>
+                    <%= l.hidden_field :content %>
+                </td>
+              </tr>
+            <% end %>
+              <tr>
+                <td>
+                <%= f.submit "チェックを更新する", class: "btn btn-info" %>
+                </td>
+              </tr>
         </table>
+          <% end %>
         
         <!--コメント一覧-->
         <h4>コメント</h4>

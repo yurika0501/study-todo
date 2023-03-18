@@ -2,20 +2,11 @@ class Post < ApplicationRecord
     belongs_to :user
     has_many :comments, dependent: :destroy
     has_many :favorites, dependent: :destroy
+    has_many :tasks, dependent: :destroy
+    accepts_nested_attributes_for :tasks
     
     validates :title, presence: true,length:{ maximum: 20 }
 
-    validate :list1
-    validate :list2
-    validate :list3
-    validate :list4
-    validate :list5
-    validate :list6
-    validate :list7
-    validate :list8
-    validate :list9
-    validate :list10
-    
       # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"

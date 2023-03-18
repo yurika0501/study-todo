@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_16_122346) do
+ActiveRecord::Schema.define(version: 2023_03_18_061350) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -78,22 +78,10 @@ ActiveRecord::Schema.define(version: 2023_03_16_122346) do
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_favorites_on_post_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "list1"
-    t.text "list2"
-    t.text "list3"
-    t.text "list4"
-    t.text "list5"
-    t.text "list6"
-    t.text "list7"
-    t.text "list8"
-    t.text "list9"
-    t.text "list10"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -102,6 +90,14 @@ ActiveRecord::Schema.define(version: 2023_03_16_122346) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.string "content", null: false
+    t.boolean "complete", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -124,6 +120,4 @@ ActiveRecord::Schema.define(version: 2023_03_16_122346) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favorites", "posts"
-  add_foreign_key "favorites", "users"
 end
