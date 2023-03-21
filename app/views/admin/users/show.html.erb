@@ -32,17 +32,13 @@
               <% @posts.each do |post| %>
               <tr>
                 <td><%= post.title %></td>
-                
-                <td style="width: 20%"><%= post.list1 %></td>
-                <td style="width: 20%"><%= post.list2 %></td>
-                <td style="width: 20%"><%= post.list3 %></td>
-                <td style="width: 20%"><%= post.list4 %></td>
-                <td style="width: 20%"><%= post.list5 %></td>
-                <td style="width: 20%"><%= post.list6 %></td>
-                <td style="width: 20%"><%= post.list7 %></td>
-                <td style="width: 20%"><%= post.list8 %></td>
-                <td style="width: 20%"><%= post.list9 %></td>
-                <td style="width: 20%"><%= post.list10 %></td>
+                  <% post.tasks.each do |task| %>
+                    <td>
+                        <%= task.content %>
+                    </td>
+                  <% end %>
+              <% end %>
+
                 <!--<td>-->
                 <!--管理者が会員の投稿を消す機能（エラーが出るので後回し）-->
                 <!--  <%#= link_to "削除", post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>-->
@@ -51,7 +47,6 @@
                 <!--  <%# end %>-->
                 <!--</td>-->
               </tr>
-              <% end %>
             </tbody>
 
       </table>

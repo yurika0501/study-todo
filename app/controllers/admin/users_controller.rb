@@ -4,8 +4,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @post = Post.find(params[:id])
-    @posts = Post.all
+    @posts = @user.posts
   end
 
 # コメントアウトしている部分は管理者が会員の投稿を消せるようにする記述だがエラーになるため後回し
