@@ -15,52 +15,50 @@
       <!--右側の投稿詳細-->
       <div class='col-md-8 offset-md-1'>
         <h2>投稿詳細</h2>
-        <!--チェックボックス付き投稿詳細-->
-        <%#= form_with model: @check do |f| %>
+        
         <%= form_with model: @post do |f|%>
-
-        <table class='table'>
-          <tr>
-            <!--投稿したユーザーと紐づくアイコン-->
-            <td><%= link_to(@post.user) do %>
-              <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle" %><br>
-              <span class="d-block"><%= @post.user.name %></span>
+          <table class='table'>
+            <tr>
+              <!--投稿したユーザーと紐づくアイコン-->
+              <td><%= link_to(@post.user) do %>
+                <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle" %><br>
+                <span class="d-block"><%= @post.user.name %></span>
+                <% end %>
+              </td>
+              
+              <td style="width: 50%"><%= @post.title %></td>
+              
+              <!--いいね機能-->
+              <td>
+                <%= render 'user/favorites/fav', post: @post %>
+              </td>
+              
+              <!--コメント数-->
+              <td>
+                <%= @post.comments.count %><i class="far fa-comment"></i>
+              </td>
+              <td>
+                <% if @post.user == current_user %>
+                  <%= link_to "削除", @post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
+                <% end %>
+              </td>
+            
+              <%= f.fields_for :tasks do |l| %>
+                <tr>
+                  <td>
+                      <%= l.check_box :complete %>&emsp;<%= l.object.content %>
+                      <%= l.hidden_field :id %>
+                      <%= l.hidden_field :content %>
+                  </td>
+                </tr>
               <% end %>
-            </td>
-            
-            <td style="width: 50%"><%= @post.title %></td>
-            
-            <!--いいね機能-->
-            <td>
-              <%= render 'user/favorites/fav', post: @post %>
-            </td>
-            
-            <!--コメント数-->
-            <td>
-              <%= @post.comments.count %><i class="far fa-comment"></i>
-            </td>
-            <td>
-              <% if @post.user == current_user %>
-                <%= link_to "削除", @post, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %>
-              <% end %>
-            </td>
-          
-            <%= f.fields_for :tasks do |l| %>
-              <tr>
-                <td>
-                    <%= l.check_box :complete %>&emsp;<%= l.object.content %>
-                    <%= l.hidden_field :id %>
-                    <%= l.hidden_field :content %>
-                </td>
-              </tr>
-            <% end %>
-              <tr>
-                <td>
-                <%= f.submit "チェックを更新する", class: "btn btn-info" %>
-                </td>
-              </tr>
-        </table>
-          <% end %>
+                <tr>
+                  <td>
+                  <%= f.submit "チェックを更新する", class: "btn btn-info" %>
+                  </td>
+                </tr>
+          </table>
+        <% end %>
         
         <!--コメント一覧-->
         <h4>コメント</h4>

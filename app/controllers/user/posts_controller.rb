@@ -13,7 +13,7 @@ class User::PostsController < ApplicationController
     end
     
     def index
-        @posts = Post.all
+        @posts = Post.page(params[:page])
         @user = User.find(current_user.id)
     end
 
@@ -38,7 +38,7 @@ class User::PostsController < ApplicationController
     private
     
     def post_params
-        params.require(:post).permit(:title, tasks_attributes: [:id, :content, :complete])
+        params.require(:post).permit(:title, tasks_attributes: [:id, :content, :complete]) #チェックボックスの更新にも使われている
     end
     
     def is_matching_login_user
