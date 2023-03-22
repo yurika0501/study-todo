@@ -12,7 +12,6 @@
             <td><%= link_to user.followings.count, user_followings_path(user) , style: 'font-size: 15px' %>&thinsp;フォロー</td>
             <td><%= link_to user.followers.count, user_followers_path(user), style: 'font-size: 15px' %>&thinsp;フォロワー</td>
           </tr>
-
         <% end %>
       </tbody>
     <% else %>

@@ -1,102 +1,79 @@
-<table class='table'>
-  <tr><%= image_tag user.get_profile_image(100, 100), class: "rounded-circle" %></tr>
-  <tr>
-	  <th>名前</th>
-	    <th><%= link_to user.name, user_path(user.id) %></th>
-  </tr>
-  <tr>
-	  <th>プロフィール</th>
-	  <th><%= user.introduction %></th>
-  </tr>
-  <tr>
-    <th>
-      <div class='row'>
+<div class="card">
+      <%= image_tag user.get_profile_image(100, 100), class: "card-img-top rounded-circle img-fluid", style: "max-width: 40%" %>
+    <div class="card-body">
+	    <p class="card-text"><b>名前：</b>&emsp;<%= link_to user.name, user_path(user.id) %></p>
+        <hr>
+        <p class="card-text"><b>プロフィール：</b></p>
+        <p class="card-text"><%= user.introduction %></p>
+        <hr>
+
         <% if user == current_user %>
             <!--編集ボタン-->
             <%= link_to edit_user_path(user), class: "btn btn-outline-success btn-block" do %>
               <i class="fas fa-user-cog"></i>
             <% end %>
         <% else %>
-          <!--ログインユーザー以外ならフォロー、フォロー解除になる-->
-          <% if current_user.following?(user) %>
-            <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
-          <% else %>
-            <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
-          <% end %>
+            <!--ログインユーザー以外ならフォロー、フォロー解除になる-->
+            <% if current_user.following?(user) %>
+              <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+            <% else %>
+              <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+            <% end %>
         <% end %>
-      </div>
-    </th>
-  </tr>
-  <tr>
-	  <th><%= link_to user.followings.count, user_followings_path(user) , style: 'font-size: 15px' %>&thinsp;フォロー</th>
-	</tr>
-	<tr>
-	  <th><%= link_to user.followers.count, user_followers_path(user), style: 'font-size: 15px' %>&thinsp;フォロワー</th>
-  </tr>
-  <tr>
-	  <th>
-	    <%= link_to posts_path do %>
-        <i class="fas fa-home"></i>&emsp;タイムライン
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-	  <th>
-	    <%= link_to user_path(current_user) do %>
-        <i class="fas fa-user"></i>&emsp;マイページ
-      <% end %>
-    </th>
-  </tr>
-  <!--<tr>-->
-	 <!-- <th>-->
-	 <!--   <%#= link_to root_path do %>-->
-  <!--      <i class="fas fa-book-open"></i>&emsp;ブックマーク※--><!--ブクマ機能は実装予定-->
-  <!--    <%# end %>-->
-  <!--  </th>-->
-  <!--</tr>-->
-  <!--<tr>-->
-	 <!-- <th>follows</th>-->
-	 <!-- <th><%#= link_to user.followings.count, followings_user_path(user) %></th>-->
-  <!--</tr>-->
-  <!--<tr>-->
-	 <!-- <th>followers</th>-->
-	 <!-- <th><%#= link_to user.followers.count, followers_user_path(user) %></th>-->
-  <!--</tr>-->
-  <tr>
-    <th>
-      <% if user_signed_in? %>
-        <div class="search_form">
-          <%= form_with url: search_path, local: true, method: :get do |f| %>
-            <div class="form-group">
-              <%= f.label :word, class: 'sr-only' %>
-              <%= f.text_field :word, class: 'form-control' %>
-            </div>
-            <div class="form-group">
-              <%= f.select :range, options_for_select([['User'], ['Post']]) %>&ensp;
-              <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
-            </div>
-            <div class="form-group">
-              <%= f.submit "検索", class: "btn btn-outline-info btn-sm" %>
-            </div>
-          <% end %>
+        <hr>
+        <div class="text-center">
+          <%= link_to user.followings.count, user_followings_path(user) , style: 'font-size: 15px' %>&thinsp;フォロー&emsp;
+          <%= link_to user.followers.count, user_followers_path(user), style: 'font-size: 15px' %>&thinsp;フォロワー
         </div>
-      <% end %>
-    </th>
-  </tr>
-</table>
+        <hr>
+        <h5 class="card-title">
+            <%= link_to posts_path do %>
+                <i class="fas fa-home"></i>&emsp;タイムライン
+            <% end %>
+        </h5>
+        <h5 class="card-title">
+            <%= link_to user_path(current_user) do %>
+                <i class="fas fa-user"></i>&emsp;マイページ
+            <% end %>
+        </h5>
+        <hr>
+        <!--   <%#= link_to root_path do %>-->
+            <!--   <i class="fas fa-book-open"></i>&emsp;ブックマーク※--><!--ブクマ機能は実装予定-->
+        <!--   <%# end %>-->
+        <%# 検索 %>
+        <% if user_signed_in? %>
+            <div class="search_form">
+            <%= form_with url: search_path, local: true, method: :get do |f| %>
+                <div class="form-group">
+                <%= f.label :word, class: 'sr-only' %>
+                <%= f.text_field :word, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                <%= f.select :range, options_for_select([['User'], ['Post']]) %>&ensp;
+                <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+                </div>
+                <div class="form-group">
+                <%= f.submit "検索", class: "btn btn-outline-info btn-sm" %>
+                </div>
+            <% end %>
+            </div>
+        <% end %>
 
-    <% if user == current_user %>
-    <div class="form-group">
-      <!--ログアウト-->
-      <% if user_signed_in? %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <% end %><br>
+        <hr>
+        <% if user == current_user %>
+        <div class="form-group">
+        <!--ログアウト-->
+        <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% end %><br>
+        </div>
+        <hr>
+        <!--退会ボタン-->
+        <div class="form-group">
+        <% if user_signed_in? %>
+            <%= link_to "退会", confirm_unsubscribe_path, class:"btn btn-danger btn-sm" %>
+        <% end %>
+        </div>
+        <% end %>
     </div>
-      <!--退会ボタン-->
-    <div class="form-group">
-      <% if user_signed_in? %>
-        <%= link_to "退会", confirm_unsubscribe_path, class:"btn btn-danger btn-sm" %>
-      <% end %>
-    </div>
-    <% end %>
-  
+</div>
