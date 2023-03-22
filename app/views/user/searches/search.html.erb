@@ -9,7 +9,10 @@
           <tr>
             <td><%= image_tag user.get_profile_image(80, 80), class: "rounded-circle" %></td>
             <td class="px-200"><%= link_to user.name, user_path(user.id) %></td>
+            <td><%= link_to user.followings.count, user_followings_path(user) , style: 'font-size: 15px' %>&thinsp;フォロー</td>
+            <td><%= link_to user.followers.count, user_followers_path(user), style: 'font-size: 15px' %>&thinsp;フォロワー</td>
           </tr>
+
         <% end %>
       </tbody>
     <% else %>
@@ -17,9 +20,20 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <td><%= image_tag post.user.get_profile_image(80,80), class: "rounded-circle" %></td>
+            <td>
+              <%= link_to(post.user) do %>
+                <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle" %><br>
+                <%= post.user.name %>
+              <% end %>
+            </td>
             <td class="px-1"><%= link_to post.title, post %></td>
-            <td class="px-1"><%= post.list1%></td>
+            <td class="px-1">
+              <% post.tasks.each do |task| %>
+                <td>
+                  <%= task.content %>
+                </td>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

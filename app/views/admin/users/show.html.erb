@@ -29,9 +29,11 @@
               <tr>
                 <th>投稿タイトル</th><th style="width: 20%">投稿リスト</th>
               </tr>
+              
               <% @posts.each do |post| %>
               <tr>
                 <td><%= post.title %></td>
+                <!--タスク部分-->
                   <% post.tasks.each do |task| %>
                     <td>
                         <%= task.content %>
