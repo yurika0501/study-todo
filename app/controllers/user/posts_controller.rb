@@ -14,6 +14,7 @@ class User::PostsController < ApplicationController
     
     def index
         @posts = Post.page(params[:page])
+        @posts = Post.page(params[:page]).order(created_at: :desc)
         @user = User.find(current_user.id)
     end
 
