@@ -55,7 +55,9 @@
               <% end %>
                 <tr>
                   <td>
-                  <%= f.submit "チェックを更新する", class: "btn btn-info" %>
+                    <% if @post.user == current_user %>
+                      <%= f.submit "チェックを更新する", class: "btn btn-info" %>
+                    <% end %>
                   </td>
                 </tr>
           </table>
