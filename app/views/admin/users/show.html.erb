@@ -25,6 +25,19 @@
           <th style="width: 20%">メールアドレス</th>
           <td><%= @user.email %></td>
         </tr>
+        <tr>
+          <th style="width: 20%">退会ステータス</th>
+          <td>
+            <% if @user.is_deleted === false %>
+              <strong class="text-success">有効</strong>
+            <% else %>
+              退会
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th style="width: 20%"><%= link_to "編集する", edit_admin_user_path, class: 'btn btn-outline-success' %></th>
+        </tr>
             <tbody>
               <tr>
                 <th>投稿タイトル</th><th style="width: 20%">投稿リスト</th>

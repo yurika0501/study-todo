@@ -6,6 +6,19 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
   end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+      if @user.update(user_params)
+        redirect_to admin_user_path(@user.id)
+      else
+        render :edit, notice: "変更に失敗しました"
+      end
+  end
 
 # コメントアウトしている部分は管理者が会員の投稿を消せるようにする記述だがエラーになるため後回し
   private

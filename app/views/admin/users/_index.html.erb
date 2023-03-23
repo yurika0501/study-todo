@@ -9,10 +9,13 @@
           <% end %>
         </td>
         <td><%= link_to user.name, admin_user_path(user.id) %></td>
-        <!--コメント数-->
-        <!--<td>-->
-          <!--<i class="fas fa-comment"></i><%#= post.comments.count %>-->
-        <!--</td>-->
+        <td><!--有効、退会ステータス-->
+              <% if user.is_deleted === false %>
+                <strong class="text-success">有効</strong>
+              <% else %>
+                退会
+              <% end %>
+          </td>
       </tr>
     </tbody>
     <% end %>
