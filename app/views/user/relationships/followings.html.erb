@@ -22,7 +22,14 @@
                 <td><%= image_tag user.get_profile_image(50,50), class: "rounded-circle" %></td>
                 <td><%= link_to user.name, user %></td>
                 <td><%= link_to user.followings.count, user_followings_path(user)  %>フォロー</td>
-	            <td><%= link_to user.followers.count, user_followers_path(user) %>フォロワー</td>
+	              <td><%= link_to user.followers.count, user_followers_path(user) %>フォロワー</td>
+	              <td>
+	                <% if current_user.following?(user) %>
+                    <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+                  <% else %>
+                    <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+                  <% end %>
+	              </td>
               </tr>
         
             <% end %>

@@ -11,6 +11,14 @@
             <td class="px-200"><%= link_to user.name, user_path(user.id) %></td>
             <td><%= link_to user.followings.count, user_followings_path(user) , style: 'font-size: 15px' %>&thinsp;フォロー</td>
             <td><%= link_to user.followers.count, user_followers_path(user), style: 'font-size: 15px' %>&thinsp;フォロワー</td>
+            <!--フォローボタン-->
+            <td>
+              <% if current_user.following?(user) %>
+                <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+              <% else %>
+                <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
