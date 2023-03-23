@@ -20,7 +20,6 @@
 - SNSを積極的に利用している人
 - 毎日たくさんのタスクや予定をこなすことが多い人
 - インターネットやツールを使用してタスク管理を行うことが好きな人
-- グループでのタスク共有やプロジェクト管理を行いたい人
 - タスクの達成感を共有し、モチベーションを高めたい人
 
 ### 主な利用シーン
@@ -31,8 +30,14 @@
 
 
 ## 設計書
-- [画面遷移図](https://drive.google.com/file/d/18ETt5fmHhz3G6Tfz0xYQY_xtEhHx7B60/view?usp=sharing)
+- [画面遷移図、ワイヤーフレーム、ER図](https://drive.google.com/file/d/18ETt5fmHhz3G6Tfz0xYQY_xtEhHx7B60/view?usp=sharing)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1NWqAzCANv7aY9AEkMeAaBTyk5POcXCMCTG1gCNErryA/edit#gid=1714330366)
+
+## 参考サイト
+- [adminアカウントを追加する方法](https://iseblog.xyz/2020/10/rails-ec%E3%82%B5%E3%82%A4%E3%83%88%E3%81%A7admin%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/)
+- [いいね機能](https://qiita.com/RIN_HM/items/968abd9e31df6631a3ed)
+- [Deviseでサインイン/サインアウト後のリダイレクト先を変更](https://qiita.com/jacoyutorius/items/0bca11ff0e2226ad2229)
+- [会員退会機能](https://qiita.com/japwork/items/faca5e5ffbd5ddfff350)
 
 ## 開発環境
 - OS：Linux(CentOS)
