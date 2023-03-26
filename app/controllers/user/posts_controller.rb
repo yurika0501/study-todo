@@ -12,20 +12,13 @@ class User::PostsController < ApplicationController
         @comment = Comment.new
     end
     
-    # def index
-        
-    #     @posts = Post.page(params[:page]).order(created_at: :desc)
-    #     @user = User.find(current_user.id)
-    # end
-    
     def index
       @user = current_user
       following_ids = @user.followings.pluck(:id)
       following_ids << @user.id
+      # フォローしているユーザーの投稿と、現在ログインしているユーザー自身の投稿を新規投稿順に並べ、ページネーションを使用する記述
       @posts = Post.where(user_id: following_ids).page(params[:page]).order(created_at: :desc)
     end
-
-
 
     def create
         @post = Post.new(post_params)

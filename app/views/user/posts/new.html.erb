@@ -17,7 +17,7 @@
       <%= form_with model: @post do |f| %>
           <div class="mx-auto" style="width: 400px;">
             <h2>タイトル</h2>
-            <%= f.text_field :title, class: "form-control" %>
+            <%= f.text_field :title, placeholder: "1文字以上入力してください", class: "form-control" %>
           </div></br>
           <div class="mx-auto" style="width: 400px;">
             <p>タスク</p>
