@@ -12,11 +12,20 @@ class User::PostsController < ApplicationController
         @comment = Comment.new
     end
     
+    # def index
+        
+    #     @posts = Post.page(params[:page]).order(created_at: :desc)
+    #     @user = User.find(current_user.id)
+    # end
+    
     def index
-        @posts = Post.page(params[:page])
-        @posts = Post.page(params[:page]).order(created_at: :desc)
-        @user = User.find(current_user.id)
+      @user = current_user
+      following_ids = @user.followings.pluck(:id)
+      following_ids << @user.id
+      @posts = Post.where(user_id: following_ids).page(params[:page]).order(created_at: :desc)
     end
+
+
 
     def create
         @post = Post.new(post_params)
