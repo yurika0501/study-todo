@@ -15,6 +15,7 @@ class User::PostsController < ApplicationController
     def index
       @user = current_user
       following_ids = @user.followings.pluck(:id)
+      # current_userをfollowing_idsに追加するコード
       following_ids << @user.id
       # フォローしているユーザーの投稿と、現在ログインしているユーザー自身の投稿を新規投稿順に並べ、ページネーションを使用する記述
       @posts = Post.where(user_id: following_ids).page(params[:page]).order(created_at: :desc)
