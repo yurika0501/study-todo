@@ -24,10 +24,15 @@
                 <td><%= link_to user.followings.count, user_followings_path(user)  %>フォロー</td>
 	              <td><%= link_to user.followers.count, user_followers_path(user) %>フォロワー</td>
 	              <td>
-	                <% if current_user.following?(user) %>
-                    <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+	                <% if user == current_user %>
+
                   <% else %>
-                    <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+                      <!--ログインユーザー以外ならフォロー、フォロー解除になる-->
+                      <% if current_user.following?(user) %>
+                        <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete, class: "btn btn-primary" %>
+                      <% else %>
+                        <%= link_to "フォロー", user_relationships_path(user.id), method: :post, class: "btn btn-outline-primary" %>
+                      <% end %>
                   <% end %>
 	              </td>
               </tr>
